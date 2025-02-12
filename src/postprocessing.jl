@@ -20,11 +20,11 @@ function append_usingKA(ast)
 			if node.head == :using
 				for arg in node.args
 					if arg == Expr(:., :CUDA) # using A, CUDA, B... TODO: nuke CUDA import
-						return Expr(:block, Expr(:using, node.args..., Expr(:., :Juliana), Expr(:., :GPUArrays)), Expr(:import, Expr(:., :KernelAbstractions)))
+						return Expr(:block, Expr(:using, node.args..., Expr(:., :KAUtils), Expr(:., :GPUArrays)), Expr(:import, Expr(:., :KernelAbstractions)))
 					end
 					if arg.head == Symbol(":") # using CUDA: ...
 						if arg.args[1] == Expr(:., :CUDA)
-							return Expr(:block, Expr(:using, Expr(:., :CUDA), Expr(:., :Juliana), Expr(:., :GPUArrays)), Expr(:import, Expr(:., :KernelAbstractions)))
+							return Expr(:block, Expr(:using, Expr(:., :CUDA), Expr(:., :KAUtils), Expr(:., :GPUArrays)), Expr(:import, Expr(:., :KernelAbstractions)))
 						end
 					end
 				end

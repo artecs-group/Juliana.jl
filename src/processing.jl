@@ -22,10 +22,10 @@ replacements = [
 
 
 #CuArray constructor:
-["CUDA.CuArray{t__}(arr_)", "KAUtils.ArrayConstructor(KAUtils.get_backend(), arr)"],
-["CUDA.CuArray{t_}(args__)", "KAUtils.ArrayConstructor(KAUtils.get_backend(), t, args...)"],
-["CUDA.CuArray{t_, d_}(args__)", "KAUtils.ArrayConstructor(KAUtils.get_backend(), t, args...)"], #TODO: I'm ignoring here dimensions. Check if this can be done
-["CUDA.CuArray(args__)", "KAUtils.ArrayConstructor(KAUtils.get_backend(), args...)"],
+["CUDA.CuArray{t__}(arr_)", "KAUtils.ArrayConstructor(KAUtils.backend(), arr)"],
+["CUDA.CuArray{t_}(args__)", "KAUtils.ArrayConstructor(KAUtils.backend(), t, args...)"],
+["CUDA.CuArray{t_, d_}(args__)", "KAUtils.ArrayConstructor(KAUtils.backend(), t, args...)"], #TODO: I'm ignoring here dimensions. Check if this can be done
+["CUDA.CuArray(args__)", "KAUtils.ArrayConstructor(KAUtils.backend(), args...)"],
 #CuArray typ:
 ["v_::CUDA.CuArray", "v::GPUArrays.AbstractGPUArray"],
 ["v_::CUDA.CuArray{t__}", "v::GPUArrays.AbstractGPUArray{t...}"],
@@ -55,9 +55,9 @@ replacements = [
 ["CUDA.CuDynamicSharedArray(T_, dims_, off_)", "KernelAbstractions.@localmem T dims", DynamicSMArrayToStaticSMArrayWarning()],
 ["CUDA.@cuStaticSharedMem(T_, dims_)", "KernelAbstractions.@localmem T dims"],
 
-["CUDA.synchronize()", "KernelAbstractions.synchronize(KAUtils.get_backend())"],
+["CUDA.synchronize()", "KernelAbstractions.synchronize(KAUtils.backend())"],
 ["CUDA.sync_threads()", "KernelAbstractions.@synchronize()"],
-["CUDA.@sync(body_)", "begin body ; KernelAbstractions.synchronize(KAUtils.get_backend()) end"],
+["CUDA.@sync(body_)", "begin body ; KernelAbstractions.synchronize(KAUtils.backend()) end"],
 
 ["CUDA.@cuprintln(args__)", "KernelAbstractions.@print(args...)"], #TODO: add line jump
 
@@ -77,7 +77,7 @@ replacements = [
 
 ["CUDA.has_cuda(args__)", "true"],
 ["CUDA.has_cuda_gpu(args__)", "true"],
-["CUDA.CUDABackend(args__)", "KAUtils.get_backend()"],
+["CUDA.CUDABackend(args__)", "KAUtils.backend()"],
 ["CUDA.ndevices()", "1"],
 ["CUDA.device!(args__)", "nothing"],
 ["CUDA.CuDevice(args__)", "KAUtils.Device(args...)"],
@@ -88,18 +88,18 @@ replacements = [
 ["CUDA.name", "KAUtils.name"], #For function objects
 ["CUDA.Const(arg_)", "arg", NoConstMemory()],
 
-#["CUDA.functional(args__)", "KernelAbstractions.functional(KAUtils.get_backend())"],
+#["CUDA.functional(args__)", "KernelAbstractions.functional(KAUtils.backend())"],
 ["CUDA.functional(args__)", "true"], #TODO: Most backends doesn't support KA functional yet...
 
-["CUDA.zeros(args__)", "KAUtils.zeros(KAUtils.get_backend(), args...)"],
-["CUDA.ones(args__)", "KAUtils.ones(KAUtils.get_backend(), args...)"],
-["CUDA.fill(args__)", "KAUtils.fill(KAUtils.get_backend(), args...)"],
+["CUDA.zeros(args__)", "KAUtils.zeros(KAUtils.backend(), args...)"],
+["CUDA.ones(args__)", "KAUtils.ones(KAUtils.backend(), args...)"],
+["CUDA.fill(args__)", "KAUtils.fill(KAUtils.backend(), args...)"],
 
 ["CUDA.@atomic exp_", "KernelAbstractions.@atomic exp"],
 
 
-["CUDA.available_memory()", "KAUtils.available_memory(KAUtils.get_backend())", FreeMemorySimulated()],
-["CUDA.default_rng()", "KAUtils.default_rng(KAUtils.get_backend())"],
+["CUDA.available_memory()", "KAUtils.available_memory(KAUtils.backend())", FreeMemorySimulated()],
+["CUDA.default_rng()", "KAUtils.default_rng(KAUtils.backend())"],
 
 #["using CUDA", "using CUDA, KernelAbstractions, Juliana, GPUArrays"],
 
@@ -280,7 +280,7 @@ function kcall_replacer(ast)
     		
 			kcall_name = Symbol("kernel_call_" * string(kcalls_replaced))
 
-			kernel_ass = Expr(Symbol("="), kcall_name, Expr(:call, kname, :(KAUtils.get_backend()), convert_call, tuple_mult))
+			kernel_ass = Expr(Symbol("="), kcall_name, Expr(:call, kname, :(KAUtils.backend()), convert_call, tuple_mult))
 			kernel_call = Expr(:call, kcall_name, kargs...)
 		
 			global kcalls_replaced += 1;
