@@ -14,3 +14,11 @@ SyntaxTree = "a4af3ec5-f8ac-5fed-a759-c2e80b4d74cb"
 TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
+[extras]
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
+CUDA = "052768ef-5323-5732-b1bb-66c8b64840ba"
+KAUtils = "dc633b07-bc4c-46e3-84ab-326609cf5a50"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["CUDA", "KAUtils", "Test", "Printf"]
