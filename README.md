@@ -102,6 +102,3 @@ Juliana also has some issues when overriding existing CUDA functions (e.g. creat
 [Julia BabelStream](https://github.com/UoB-HPC/BabelStream/tree/main/src/julia/JuliaStream.jl). Full translation, minimal changes required (`device` function name clash).
 
 [Oceananigans.jl](https://github.com/CliMA/Oceananigans.jl). Full translation, no changes required. Only AMD/NVIDIA (FFTW requires unified memory).
-
-## Citation
-Proceeding of the congress where the project was presented are not released yet.
