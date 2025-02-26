@@ -1,7 +1,15 @@
 # JULIANA (**J**ulia **U**nification **L**ayer for **I**ntel, **A**MD, **N**vidia and **A**pple)
 
-Juliana is a syntax translation tool for [CUDA.jl](https://github.com/JuliaGPU/CUDA.jl) package to [KernelAbstractions.jl](https://github.com/JuliaGPU/KernelAbstractions.jl). It will translate a big portion of CUDA.jl functions and macros to KernelAbstractions.jl equivalent constructs.
+Juliana is a syntax translation tool for [CUDA.jl](https://github.com/JuliaGPU/CUDA.jl) package to [KernelAbstractions.jl](https://github.com/JuliaGPU/KernelAbstractions.jl). It will translate a big portion of CUDA.jl functions and macros to KernelAbstractions.jl equivalent constructs. Depends heavily on our KernelAbstractions extension [KAUtils.jl](https://github.com/artecs-group/KAUtils.jl)
 
+## Published work:
+"Juliana: Automated Julia CUDA.jl Code Translation Across Multiple GPU Platforms" </br>
+PPAM 2024, Part II, LNCS 15580 proceedings </br>
+In Press </br>
+
+"Evaluation of Juliana Tool:  A Translator for Julia's CUDA.jl Code into KernelAbstraction.jl" </br>
+FGCS </br>
+Submitted </br>
 
 ## Installation and usage:
 
