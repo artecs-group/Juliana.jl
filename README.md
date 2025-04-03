@@ -9,6 +9,7 @@ In Press </br>
 
 
 ### Citation in BibTeX:
+```
 @InProceedings{10.1007/978-3-031-85700-3_13,
     author="de la Calle, Enrique
     and Garc{\'i}a, Carlos",
@@ -25,6 +26,7 @@ In Press </br>
     abstract="Julia is a high-level language that supports executing parallel code through various packages. CUDA.jl is prominently used for developing GPU Julia code across a significant number of libraries and programs. In this paper, Juliana, a new tool that translates Julia code utilizing the CUDA.jl package to an abstract multi-backend representation powered by the KernelAbstractions package, is presented. The performance impact of this translation is evaluated using a custom adaptation of the well-established Rodinia benchmark suite to Julia CUDA.jl. To ensure the viability of the tool from a performance perspective, an accurate statistical analysis of the overhead using the BenchmarkTools Julia package is performed, comparing the same benchmark code on the same CUDA device before and after the translation. Additionally, the portability of this approach is demonstrated by running the translated code across multiple backends of KernelAbstractions, allowing the execution of the Rodinia benchmark suite on different GPU vendors such as NVIDIA, Intel, AMD, or Apple.",
     isbn="978-3-031-85700-3"
 }
+```
 
 
 "Evaluation of Juliana Tool:  A Translator for Julia's CUDA.jl Code into KernelAbstraction.jl" </br>
